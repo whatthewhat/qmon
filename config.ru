@@ -1,8 +1,9 @@
+require 'dotenv'
+Dotenv.load
+
 require 'sidekiq'
-
-Sidekiq.configure_client do |config|
-  config.redis = { :size => 1 }
-end
-
 require 'sidekiq/web'
+require 'sinatra_auth_github'
+require_relative 'qmon'
+
 run Sidekiq::Web
