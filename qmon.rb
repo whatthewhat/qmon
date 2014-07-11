@@ -11,8 +11,10 @@ module Sidekiq
     register Sinatra::Auth::Github
 
     before do
-      authenticate!
-      github_organization_authenticate!(ENV['GITHUB_ORG'])
+      if github_org = ENV['GITHUB_ORG']
+        authenticate!
+        github_organization_authenticate!(github_org)
+      end
     end
 
     get '/logout' do
