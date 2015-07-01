@@ -8,12 +8,26 @@ module Sidekiq
       secret: ENV['GITHUB_SECRET']
     }
 
-    register Sinatra::Auth::Github
+    register Sinatra::Auth::Github if ENV['GITHUB_ORG']
+
+    helpers do
+      def check_basic_auth
+        @auth ||= Rack::Auth::Basic::Request.new(request.env)
+        credentials = [ENV['BASIC_AUTH_LOGIN'], ENV['BASIC_AUTH_PASSWORD']]
+
+        unless @auth.provided? && @auth.basic? && @auth.credentials == credentials
+          headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
+          halt 401, "Not authorized\n"
+        end
+      end
+    end
 
     before do
       if github_org = ENV['GITHUB_ORG']
         authenticate!
         github_organization_authenticate!(github_org)
+      else
+        check_basic_auth
       end
     end
 
