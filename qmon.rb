@@ -38,5 +38,5 @@ module Sidekiq
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = { size: 1, url: ENV["REDIS_PROVIDER"] }
+  config.redis = { size: 1, url: ENV["REDIS_URL"] }
 end
