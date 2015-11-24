@@ -1,14 +1,16 @@
 module Sidekiq
   class Web
-    use Rack::Session::Cookie, secret: ENV['RACK_SESSION_COOKIE']
+    if ENV['GITHUB_ORG']
+      use Rack::Session::Cookie, secret: ENV['RACK_SESSION_COOKIE']
 
-    set :github_options, {
-      scopes: "user",
-      client_id: ENV['GITHUB_KEY'],
-      secret: ENV['GITHUB_SECRET']
-    }
+      set :github_options, {
+        scopes: "user",
+        client_id: ENV['GITHUB_KEY'],
+        secret: ENV['GITHUB_SECRET']
+      }
 
-    register Sinatra::Auth::Github if ENV['GITHUB_ORG']
+      register Sinatra::Auth::Github
+    end
 
     helpers do
       def check_basic_auth
