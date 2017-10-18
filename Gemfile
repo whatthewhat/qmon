@@ -1,6 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "sinatra"
-gem "sidekiq"
-gem "sinatra_auth_github"
-gem "dotenv"
+gem 'sidekiq'
+gem 'dotenv'
