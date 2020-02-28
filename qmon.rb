@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rack'
 require 'sidekiq'
 require 'sidekiq/web'
 
 class Qmon
-  def initialize
-    Sidekiq.configure_client do |config|
-      config.redis = { size: 1, url: ENV['REDIS_URL'] }
-    end
+  Sidekiq.configure_client do |config|
+    config.redis = { size: 1, url: ENV['REDIS_URL'] }
+  end
 
+  def initialize
     @app = Rack::Builder.new do
       # https://github.com/mperham/sidekiq/wiki/Monitoring#standalone-with-basic-auth
       map '/' do
