@@ -3,7 +3,7 @@ GEM
   specs:
     connection_pool (2.2.2)
     dotenv (2.7.5)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-protection (2.0.8.1)
       rack
     redis (4.1.3)
