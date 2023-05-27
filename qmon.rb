@@ -6,7 +6,11 @@ require 'sidekiq/web'
 
 class Qmon
   Sidekiq.configure_client do |config|
-    config.redis = { size: 1, url: ENV['REDIS_URL'] }
+    config.redis = {
+      size: 1,
+      url: ENV['REDIS_URL'],
+      ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
+    }
   end
 
   def initialize
