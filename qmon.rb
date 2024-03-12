@@ -3,6 +3,7 @@
 require 'rack'
 require 'sidekiq'
 require 'sidekiq/web'
+require 'sidekiq/cron/web'
 
 class Qmon
   Sidekiq.configure_client do |config|
