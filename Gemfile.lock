@@ -33,9 +33,9 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     rack (2.2.8.1)
-    redis-client (0.21.0)
+    redis-client (0.22.1)
       connection_pool
-    sidekiq (7.2.2)
+    sidekiq (7.2.4)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
