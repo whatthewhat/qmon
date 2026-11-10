@@ -42,7 +42,7 @@ GEM
     puma (7.2.1)
       nio4r (~> 2.0)
     raabro (1.4.0)
-    rack (2.2.23)
+    rack (2.2.25)
     redis-client (0.29.0)
       connection_pool
     securerandom (0.4.1)
